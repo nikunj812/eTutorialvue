@@ -36,6 +36,7 @@ class ProductController extends Controller
     		$image_name = rand(10000,99999).".".$file->GetClientOriginalExtension();
     		$file->move(public_path('admin/images/'),$image_name);
     	}
+		$multi_image = '';
 		if($req->file('mimage'))
     	{
     		//dd($req->file('mimage'));

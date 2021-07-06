@@ -19,10 +19,17 @@ use App\Http\Controllers\UserController;
 
 
 //user 
-Route::get('/',[UserController::class,'fetchdata']);
+Route::get('/', function () {
+    return view('vue_user.index');
+});
+
+Route::get('{any}', function(){
+    return view('vue_user.index');
+})->where('any','.*');
+// Route::get('/',[UserController::class,'fetchdata']);
 Route::get('/product/{category}/{subcategory}',[UserController::class,'product'])->middleware('UserCheck');
-Route::get('/about',[UserController::class,'about']);
-Route::get('/contact',[UserController::class,'contact']);
+// Route::get('/about',[UserController::class,'about']);
+// Route::get('/contact',[UserController::class,'contact']);
 Route::post('/insertuser',[UserController::class,'insertuser']);
 Route::get('/userregister',[UserController::class,'userregister']);
 Route::get('/userlogin',[UserController::class,'userlogin']);
@@ -131,3 +138,7 @@ Route::get('/Deactive_product/{id}',[ProductController::class,'Deactive_product'
 Route::post('/searchingproduct',[ProductController::class,'searchingproduct']);
 Route::post('/deleteMultipleProduct',[ProductController::class,'deleteMultipleProduct']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -244,6 +244,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 		</div>
 		<!--//footer-->
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{ asset('user_assest/js/simpleCart.min.js') }}"> </script>
 <!-- slide -->

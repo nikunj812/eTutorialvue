@@ -26,9 +26,7 @@ class UserController extends Controller
    {
       $categoryData = Category::where('category_status',1)->get(); 	 	
       $subcategoryData = Subcategory::where('subcategory_status',1)->get(); 	
-            
-      $productData = Product::where('product_cat_name',$category)->where('product_sub_name',$subcategory)->get();
-     // dd($product)
+      $productData = Product::where('product_cat_name',$category)->where('product_sub_name',$subcategory)->get();    
 
       return view('users.product',['catdata'=>$categoryData, 'subdata'=>$subcategoryData, 'productdata'=>$productData]);   	 
    }
