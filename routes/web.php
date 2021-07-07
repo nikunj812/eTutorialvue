@@ -23,23 +23,20 @@ Route::get('/', function () {
     return view('vue_user.index');
 });
 
-Route::get('{any}', function(){
-    return view('vue_user.index');
-})->where('any','.*');
 // Route::get('/',[UserController::class,'fetchdata']);
 Route::get('/product/{category}/{subcategory}',[UserController::class,'product'])->middleware('UserCheck');
 // Route::get('/about',[UserController::class,'about']);
 // Route::get('/contact',[UserController::class,'contact']);
 Route::post('/insertuser',[UserController::class,'insertuser']);
-Route::get('/userregister',[UserController::class,'userregister']);
-Route::get('/userlogin',[UserController::class,'userlogin']);
-Route::post('/checklogin',[UserController::class,'checklogin']);
-Route::get('/userlogout', function(){
-    session()->forget('username');
-    return redirect('/userlogin');
-});
-Route::post('/seachproduct',[UserController::class,'searchproduct'])->middleware('UserCheck');
-Route::get('/singlerecord/{id}',[UserController::class,'singlerecord'])->middleware('UserCheck');
+// Route::get('/userregister',[UserController::class,'userregister']);
+// Route::get('/userlogin',[UserController::class,'userlogin']);
+// Route::post('/checklogin',[UserController::class,'checklogin']);
+// Route::get('/userlogout', function(){
+//     session()->forget('username');
+//     return redirect('/userlogin');
+// });
+// Route::post('/seachproduct',[UserController::class,'searchproduct'])->middleware('UserCheck');
+// Route::get('/singlerecord/{id}',[UserController::class,'singlerecord'])->middleware('UserCheck');
 Route::get('/forgetpassword',[UserController::class,'forgetpassword']);
 Route::post('/otpchecker',[UserController::class,'otpchecker']);
 Route::get('/otp_checker',[UserController::class,'otp_checker']);
@@ -142,3 +139,8 @@ Route::post('/deleteMultipleProduct',[ProductController::class,'deleteMultiplePr
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('{any}', function(){
+    return view('vue_user.index');
+})->where('any','.*');

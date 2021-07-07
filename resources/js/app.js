@@ -31,7 +31,12 @@ Vue.component('footer-user', require('./vue_user/Footer.vue').default);
 Vue.component('index', require('./vue_user/Index.vue').default);
 Vue.component('about', require('./vue_user/About.vue').default);
 Vue.component('contact', require('./vue_user/Contact.vue').default);
-Vue.component('bookdata/:category/:subcategory', require('./vue_user/BookData.vue').default);
+Vue.component('bookdata', require('./vue_user/BookData.vue').default);
+Vue.component('singlerecord', require('./vue_user/SingleRecord.vue').default);
+Vue.component('userregister', require('./vue_user/UserRegister.vue').default);
+Vue.component('userlogin', require('./vue_user/UserLogin.vue').default);
+Vue.component('userlogin', require('./vue_user/UserLogin.vue').default);
+Vue.component('searchbookdata', require('./vue_user/SearchBookdata.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

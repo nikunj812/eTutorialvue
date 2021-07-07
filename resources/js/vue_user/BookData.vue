@@ -18,14 +18,14 @@
                     <div class="col-md-4 item-grid1 simpleCart_shelfItem" v-for="book in books" :key="book.id">
                         <div class=" mid-pop">
                             <div class="pro-img">
-                                <img :src="'/admin/images/$pdata->product_image'" class="img-responsive" alt="" >
+                                <img :src="'/admin/images/'+book.product_image" :alt="book.product_name" >
                             </div>
                             <div class="mid-1">
                                 <div class="women">
                                     <div class="women-top">
                                         <div class="demo">
                                             <span>{{ book.product_cat_name}}</span>
-                                            <a ><i class="glyphicon glyphicon-book"></i></a>
+                                            <router-link :to="{name: 'singlerecord' , params:{id :  book.product_id}}" ><i class="glyphicon glyphicon-book"></i></router-link>
                                         </div>
                                         <h6><a >{{ book.product_name }}</a></h6>
                                         <a download><img :src="'user_assest/images/downloadd.png'" alt="" class="download_button"></a>
@@ -47,7 +47,6 @@
 
 
 <script>
-
 export default {
 	data(){
 		return{
@@ -61,14 +60,20 @@ export default {
 	},
 	methods:{
 		getCategory(){
-			axios.get('/api/fetchbookdata').then(res => {
+			axios.get(`/api/fetchbookdata/${this.$route.params.category}/${this.$route.params.subcategory}`).then(res => {
+                console.log(res);
 				this.categories = res.data.category;
 				this.subcategories = res.data.subcategory;
 				this.books = res.data.product;
 			}).catch(err => {
 				console.log(err);
 			})
-		}
+		},
 	},
+    watch:{
+         $route () {
+             this.getCategory();
+         }
+    }
 }
 </script>
