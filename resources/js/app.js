@@ -35,8 +35,10 @@ Vue.component('bookdata', require('./vue_user/BookData.vue').default);
 Vue.component('singlerecord', require('./vue_user/SingleRecord.vue').default);
 Vue.component('userregister', require('./vue_user/UserRegister.vue').default);
 Vue.component('userlogin', require('./vue_user/UserLogin.vue').default);
-Vue.component('userlogin', require('./vue_user/UserLogin.vue').default);
 Vue.component('searchbookdata', require('./vue_user/SearchBookdata.vue').default);
+Vue.component('forgetpassword', require('./vue_user/ForgetPassword.vue').default);
+Vue.component('otpcheck', require('./vue_user/OtpCheck.vue').default);
+Vue.component('setnewpassword', require('./vue_user/SetNewPassword.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

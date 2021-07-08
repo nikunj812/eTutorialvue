@@ -7,6 +7,8 @@ import userregister from './vue_user/UserRegister.vue'
 import userlogin from './vue_user/UserLogin.vue'
 import searchbookdata from './vue_user/SearchBookdata.vue'
 import forgetpassword from './vue_user/ForgetPassword.vue'
+import otpcheck from './vue_user/OtpCheck.vue'
+import setnewpassword from './vue_user/SetNewPassword.vue'
 
 export const routes = [
     {
@@ -44,7 +46,8 @@ export const routes = [
     {
         path: '/userlogin',
         name: 'userlogin',
-        component: userlogin
+        component: userlogin,
+        props: true 
     },
     {
         path: '/searchbookdata/:search',
@@ -56,5 +59,18 @@ export const routes = [
         path: '/forgetpassword',
         name: 'forgetpassword',
         component: forgetpassword,
+    },
+    {
+        path: '/otpcheck',
+        name: 'otpcheck',
+        component: otpcheck,
+        props: true 
+    },
+    
+    {
+        path: '/setnewpassword',
+        name: 'setnewpassword',
+        component: setnewpassword,
+        props: true 
     },
 ]

@@ -25,6 +25,9 @@ Route::get('/fetchdata',[UserController::class,'fetchdata']);
 Route::get('/fetchbookdata/{category}/{subcategroy}',[UserController::class,'product']);
 Route::get('/singlerecord/{id}',[UserController::class,'singlerecord']);
 Route::post('/search',[UserController::class,'searchproduct']);
+Route::post('/forgetpassword',[UserController::class,'forgetpassword']);
+Route::post('/checkotp',[UserController::class,'checkotp']);
+Route::post('/submitnewpassword',[UserController::class,'PasswordUpdate']);
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('logout', [UserController::class, 'logout']);
 

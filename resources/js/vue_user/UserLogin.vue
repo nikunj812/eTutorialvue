@@ -53,6 +53,7 @@
 import EventBus from './EventBus'
 
 export default {
+    props: ['successmessage'],
 	data(){
 		return{
 		message: '',
@@ -102,5 +103,10 @@ export default {
                 this.$router.push({name: 'forgetpassword'});
             }
     },
+    mounted(){
+        if(this.successmessage){
+			this.message = this.successmessage
+		}
+    }
 }
 </script>

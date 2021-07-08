@@ -37,12 +37,12 @@ Route::post('/insertuser',[UserController::class,'insertuser']);
 // });
 // Route::post('/seachproduct',[UserController::class,'searchproduct'])->middleware('UserCheck');
 // Route::get('/singlerecord/{id}',[UserController::class,'singlerecord'])->middleware('UserCheck');
-Route::get('/forgetpassword',[UserController::class,'forgetpassword']);
-Route::post('/otpchecker',[UserController::class,'otpchecker']);
-Route::get('/otp_checker',[UserController::class,'otp_checker']);
-Route::post('/checkinsameotp',[UserController::class,'checkinsameotp']);
-Route::get('/newpassword',[UserController::class,'newpassword']);
-Route::post('/PasswordUpdate',[UserController::class,'PasswordUpdate']);
+// Route::get('/forgetpassword',[UserController::class,'forgetpassword']);
+// Route::post('/otpchecker',[UserController::class,'otpchecker']);
+// Route::get('/otp_checker',[UserController::class,'otp_checker']);
+// Route::post('/checkinsameotp',[UserController::class,'checkinsameotp']);
+// Route::get('/newpassword',[UserController::class,'newpassword']);
+// Route::post('/PasswordUpdate',[UserController::class,'PasswordUpdate']);
 
 
 

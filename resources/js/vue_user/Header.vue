@@ -189,6 +189,7 @@ export default {
     logout() {
       this.auth = '';
       localStorage.removeItem('usertoken')
+      localStorage.removeItem('user')
       // this.$router.push({name: 'index'});
       this.$router.push("/").catch(()=>{});
     },
@@ -213,12 +214,16 @@ export default {
   mounted() {
     EventBus.$on('logged-in', status => {
         this.auth = status
-    });
-    if(localStorage.getItem('usertoken')) {
-      this.auth = 'loggedin';
-      let user = localStorage.getItem('user');
-      this.user = user;
+      if(localStorage.getItem('user')) {
+        let user = localStorage.getItem('user');
+        this.user = user;
     }
+    });
+      if(localStorage.getItem('usertoken')) {
+        this.auth = 'loggedin';
+        let user = localStorage.getItem('user');
+        this.user = user;
+     }
   },
 }
 </script>

@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Mail;
+use Session;
 use App\Http\Controllers\Controller as Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -81,7 +82,7 @@ class UserController extends Controller
         //valid credential
         $validator = Validator::make($credentials, [
             'email' => 'required|email',
-            'password' => 'required|string|min:6|max:50'
+            'password' => 'required'
         ]);
 
         //Send failed response if request is not valid
@@ -143,6 +144,71 @@ class UserController extends Controller
            return response()->json(['product'=>$data]);
         }
       }
-    
+
+    public function forgetpassword(Request $req){
+        //dd($req->toArray());
+    $email = $req->get('email');
+    $data = User::where('email',$email)->count();
+        if($data == 1)
+        {
+        $userdata = User::where('email',$email)->first();
+        $to_name = 'Ebook';
+        $to_email = $userdata->email;
+        $otp = rand(10000,99999);
+        // $req->session()->put('store_otp_session', $otp);
+        // session(['store_email_session' => $to_email]);
+        // $req->session()->put('store_email_session', $to_email);
+        Session::put('store_email_session', $to_email);
+       
+        $data = array('name'=>$userdata->name, "body" => $otp, 'email' => $to_email);
+
+        Mail::send('users.mail', $data, function($message) use ($to_name, $to_email) {
+        $message->to($to_email, $to_name)
+        ->subject('For Verifying User');
+        $message->from('SENDER_EMAIL_ADDRESS','Verify OTP');
+        });
+
+        return response()->json(['otp'=>$data,'message' =>'send mail successfully']);
+
+        }
+        else
+        {
+            return response()->json(['message' =>'send mail successfully']);
+        }
+    }
+    public function checkotp(Request $req)
+    {
+      $otp = $req->get('otp');
+      $store_otp = $req->get('checkotp');
+
+      if($store_otp == $otp)
+      {
+         return response()->json(['message' =>'Add A New Password']);
+      }
+      else
+      {
+         return response()->json(['status'=> 'no','message' =>'Otp Does Not Match!!!!']);
+      }
+    }
+
+    public function PasswordUpdate(Request $req){
+   
+        $npassword = $req->get('newpassword');
+        $cpassword = $req->get('cnewpassword');
+        $email = $req->get('email');
+        if($npassword == $cpassword)
+        {
+           $cpass = Hash::make($npassword);
+           $data = array('password'=>$cpass);
+           User::where('email',$email)->update($data);
+           return response()->json(['message' =>'password change successfully']);
+        }
+        else
+        {
+           return response()->json(['status'=> 'no','message' =>'Password Does noy match']);
+        }
+  
+     
+     }
  
 }
